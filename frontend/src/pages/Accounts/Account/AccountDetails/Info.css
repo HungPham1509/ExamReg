@@ -1,0 +1,73 @@
+.InfoTypeText {
+    position: relative;
+    display: flex;
+    margin-top: 35px;
+    font-size: 12px;
+    margin-left: 120px;
+}
+
+.InfoTypeText > p:last-child {
+    position: absolute;
+    left: 140px;
+}
+
+.InfoTypeText > p:first-child {
+    font-weight: bold;
+    margin: 0;
+}
+
+.InfoTypeSelect {
+    position: relative;
+    display: flex;
+    margin-top: 35px;
+    font-size: 12px;
+    margin-left: 120px;
+    align-items: center;
+}
+
+.InfoTypeSelect > select {
+    position: absolute;
+    left: 140px;
+    width: 180px;
+    height: 31px;
+    border: 1px solid rgba(0, 0, 0, 0.3);
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+
+.InfoTypeSelect >select:disabled {
+    color: black;
+}
+
+.InfoTypeSelect > p:first-child {
+    font-weight: bold;
+    margin: 0;
+}
+
+.InfoTypeTextarea {
+    display: flex;
+    position: relative;
+    margin-top: 35px;
+    font-size: 12px;
+    margin-left: 120px;
+}
+
+.InfoTypeTextarea > p:first-child {
+    font-weight: bold;
+    margin: 0;
+}
+
+.InfoTypeTextarea > textarea {
+    width: 80%;
+    position: absolute;
+    left: 140px;
+    margin-bottom: 50px;
+    height: 80px;
+    padding: 5px 0 0 10px;
+    outline: none;
+    resize: none;
+    border: 1px solid rgba(0, 0, 0, 0.3);
+    box-sizing: border-box;
+    height: 99px;
+    border-radius: 5px;
+}

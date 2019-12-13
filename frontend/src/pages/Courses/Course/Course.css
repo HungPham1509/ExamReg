@@ -1,0 +1,44 @@
+.Course {
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+    width: 90%;
+}
+
+.CourseName {
+    padding: 5px 0 5px 30px;
+    background-color: #0073b7;
+    border-radius: 3px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.CourseName > a {
+    color: #ffffff;
+    font-weight: 600;
+    font-size: 16px;
+}
+
+.MCList {
+    display: flex;
+    flex-direction: column;
+    padding-left: 0;
+    margin-bottom: 0;
+}
+
+.ToggleButton {
+    width: 30px;
+    height: 30px;
+    padding: 0;
+    background-color: #0073b7;
+    border: none;
+    margin-right: 10px;
+}
+
+.ToggleButton > img {
+    width: 15px;
+    height: 15px;
+    margin: auto;
+    margin-bottom: 2px;
+}

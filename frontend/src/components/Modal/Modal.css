@@ -1,0 +1,39 @@
+.Modal {
+    position: absolute;
+    z-index: 500;
+    background: #DC2424;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #4A569D, #DC2424);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #4A569D, #DC2424); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    width: 70%;
+    top: 40%;
+    color: #fff;
+    font-weight: 500;
+    padding: 16px;
+    font-size: 16px;
+    box-sizing: border-box;
+    transition: all 0.3s ease-out;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-radius: 3px;
+}
+
+.Save {
+    margin-top: 10px;
+    border-radius: 3px;
+    width: 100px;
+    height: 30px; 
+    color: #24FE41;
+    font-weight: 700;  
+    font-size: 12px; 
+    border: none;
+    background: #fff;  /* fallback for old browsers */
+}
+
+@media (min-width: 600px) {
+    .Modal {
+        width: 500px;
+        left: calc(50% - 250px);
+    }
+}

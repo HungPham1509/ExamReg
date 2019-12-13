@@ -1,0 +1,27 @@
+.Container {
+    display: flex;
+    align-items: center;
+    width: 400px;
+    text-transform: capitalize;
+}
+
+.Container > label {
+    margin-bottom: 0;
+    font-size: 12px;
+    padding: 10px 10px 10px 20px;
+    background-color: #f56954;
+    color: #fff;
+    font-weight: 700;
+    flex-basis: 150px;
+    border-radius: 5px;
+}
+
+.Block {
+    background-color: #009549;
+    font-size: 12px;
+    padding: 10px 10px 10px 20px;
+    color: #fff;
+    font-weight: 700;
+    flex-basis: 200px;
+    margin-left: -10px;
+}

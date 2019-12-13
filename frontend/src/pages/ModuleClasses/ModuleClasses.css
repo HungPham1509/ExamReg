@@ -1,0 +1,29 @@
+.ModuleClass {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    background-color: #f7f2f2;
+    font-size: 12px;
+    padding: 8px 40% 8px 40px;
+    box-sizing: border-box;
+    border-top: 0.5px solid #d1cece;
+    color: #949494;
+    justify-content: space-between;
+    font-weight: 600;
+}
+
+.ModuleClass > a {
+    color: #949494;
+    font-weight: 600;
+    font-size: 12px;
+}
+
+.Hide {
+    display: none;
+}
+
+li > div {
+    position: absolute;
+    left: 60%;
+}
+

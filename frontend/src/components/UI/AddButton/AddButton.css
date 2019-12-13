@@ -1,0 +1,44 @@
+.AddButton {
+    width: 150px;
+    font-size: 12px;
+    text-transform: capitalize;
+    background-color: #aa6941;
+    border: none;
+    color: #f3eff2;
+    padding: 5px;
+    font-weight: 500;
+    border-radius: 4px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.AddButton > img {
+    width: 12px;
+    height: 12px;
+    margin-right: 3px;
+}
+
+.AddAccount {
+    margin-top: 5px;
+    background: #1a2a6c;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #fdbb2d, #b21f1f, #1a2a6c);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #fdbb2d, #b21f1f, #1a2a6c); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    border: none;
+    border-radius: 3px;
+    color: #fff;
+    font-size: 12px;
+    font-weight: 500;
+    padding: 3px 0;
+    width: 200px;
+}
+
+.AddAccount > img {
+    width: 12px;
+    height: 12px;
+    margin-right: 3px;
+}
+
+button:focus {
+    outline: none;
+}

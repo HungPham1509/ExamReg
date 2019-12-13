@@ -1,0 +1,30 @@
+.PageButtons {
+    display: flex;
+}
+
+.PageButtons > button {
+    background-color: #252B33;
+    border: 1px solid #252B33;
+    border-top: none;
+    color: #fff;
+    font-size: 12px;
+    font-weight: 500;
+    padding: 3px 0;
+    width: 100px;
+    margin-left: 2px;
+}
+
+.PageButtons > button:disabled {
+    display: none;  
+}
+
+.Page {
+    background-color: #1fae66;
+    border-color: #1fae66;
+    color: #fff;
+    cursor: default;
+    padding: 6px 12px;
+    margin-left: -1px;
+    line-height: 1.42857143;
+    font-size: 12px;
+}

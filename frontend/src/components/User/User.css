@@ -1,0 +1,49 @@
+.UserContainer {
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 0.5px solid rgba(0, 0, 0, 0.4);
+    text-transform: capitalize;
+}
+
+.User {
+    display: flex;
+    padding: 10px 0 10px 0;
+}
+
+.User img {
+    height: 30px;
+    width: 30px;
+    margin-right: 5px;
+}
+
+.User p {
+    align-self: center;
+    font-size: 12px;
+    font-weight: 500;
+    color: rgba(0, 0, 0, 0.7)
+}
+
+.Logout {
+    display: flex;
+    align-self: center;
+    color: rgba(0, 0, 0, 0.7);
+    background-color: #fff;
+    font-size: 12px;
+    border: none;
+    padding: 0;
+    text-transform: capitalize;
+}
+
+.Logout > img {
+    width: 12px;
+    height: 12px;
+    margin-left: 3px;
+    margin-top: 4px;
+}
+
+.Logout:hover {
+    color: #ff4e50;
+}
+
+
+

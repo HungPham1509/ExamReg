@@ -1,0 +1,125 @@
+.LoginContainer {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+}
+
+.Frame {
+    background-color: #303641;
+    color: #949494;
+    flex: 5 0 0%;
+    display: flex;
+    justify-content: center;
+}
+
+.Frame > form {
+    padding-top: 50px;
+    display: flex;
+    flex-direction: column;
+    flex-basis: 320px;
+}
+
+.InputElement {
+    position: relative;
+    display: flex;
+    border: solid 0.5px #373E43;
+    border-radius: 3px;
+    margin-bottom: 15px;
+    width: 320px;
+    flex-basis: 45px;
+}
+
+.InputElement > input {
+    width: 100%;
+    padding: 8px 20px;
+    color: #949494;
+    box-sizing: border-box;
+    background-color: #373e4a;
+    border-style: none;
+    border-radius: 3px;
+    width: 280px;
+}
+
+.InputElement > input:focus {
+    outline: none;
+}
+
+.InputElement >input:focus::placeholder {
+    color: transparent;
+}
+
+.InputElement > input::placeholder {
+    color: #949494;
+    font-size: 12px;
+    text-transform: capitalize;
+}
+
+.ButtonElement {
+    background-color: #303641;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border: solid 1px #454A54;
+    border-radius: 2px;
+    color: #ffffff;
+    font-size: 14px;
+    height: 45px;
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
+    width: 320px;
+}
+
+.ButtonElement > label {
+    margin-bottom: 0;
+    margin-left: 10px;
+    text-transform: capitalize;   
+}
+
+.ButtonElement > img {
+    width: 14px;
+    height: 14px;
+    margin-right: 10px;
+    margin-top: 3px;
+}
+
+.ButtonElement:hover {
+    background-color: #38404e;
+}
+
+.ButtonElement:focus {
+    outline: none;
+}
+
+.fw {
+    margin-top: 20px;
+    align-self: center;
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 12px;
+    text-transform: capitalize;
+}
+
+.fw:hover {
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.mess {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 10px;
+    background-color: #B62020;
+    padding: 6px;
+}
+
+.mess > h4 {
+    font-size: 12px;
+    color: #fff;
+}
+
+.mess > i {
+    font-size: 10px;
+    margin: 0;
+    margin-bottom: 5.5px;
+    margin-right: 3px;
+}
+

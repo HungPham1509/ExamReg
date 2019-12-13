@@ -1,0 +1,52 @@
+.MenuHeader {
+    display: flex;
+    padding: 35px 25px;
+    box-sizing: border-box;
+    width: 100%;
+}
+
+.Logo {
+    display: flex;
+    color: #949494;
+    font-size: 12px;
+}
+
+.Logo img {
+    flex: 1 0 34px;
+}
+
+.ToggleButton {
+    min-width: 34px;
+    max-width: 34px;
+    background-color: #303641;
+    border: 1px solid #949494;
+    border-radius: 2px;
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+    justify-content: space-evenly;
+}
+
+.ToggleButton:hover {
+    cursor: pointer;
+    background-color: rgba(69, 74, 84, 0.4);
+}
+
+.ToggleButton div {
+    width: 20px;
+    height: 4px;
+    background-color: #949494;
+    align-self: center;
+}
+
+
+.MenuHeaderOff {
+    display: flex;
+    box-sizing: border-box;
+    width: 100%;
+    height: 72px;
+    padding: 18px 0;
+    justify-content: center;
+}
+
+

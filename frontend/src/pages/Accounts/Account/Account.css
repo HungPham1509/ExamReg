@@ -1,0 +1,54 @@
+.Account {
+    width: 100%;
+    display: flex;
+    margin-top: 20px;
+    background: #FFFFFF;
+    flex-basis: 18%;
+    border: 1px solid #EBEBEB;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 2px;
+    cursor: pointer;
+    color: #373E43;
+}
+
+.Account:hover, .Account:active {
+    text-decoration: none;
+    color: #373E43;
+}
+
+.Account > img {
+    margin: 10px 30px 10px 10px;
+    width: 85px;
+    height: 85px;
+    border-radius: 50%;
+}
+
+.Info {
+    display: flex;
+    flex-direction: column;
+    margin-top: 10px;
+    flex: 1 0 0;
+    text-transform: uppercase;
+}
+
+.Info > p {
+    font-size: 16px;
+    margin: 0;
+}
+
+.Info > table {
+    font-size: 12px;
+    margin-top: 10px;  
+}
+
+tr:nth-child(2) > td{
+    padding: 11px 0;
+}
+
+td img{
+    margin-right: 8px;
+}
+
+td {
+    width: 30%;
+}

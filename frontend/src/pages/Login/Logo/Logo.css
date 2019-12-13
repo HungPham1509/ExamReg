@@ -1,0 +1,23 @@
+.Logo {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+    background-color: #373e4a;
+    flex: 3 0 0%;
+}
+
+.Logo img {
+    max-height: 100px;
+    max-width: 100px;
+    padding-bottom: 20px;
+}
+
+.Title {
+    font-size: 14px;
+    line-height: 28px;
+    color: #949494;
+    text-transform: uppercase;
+}
+

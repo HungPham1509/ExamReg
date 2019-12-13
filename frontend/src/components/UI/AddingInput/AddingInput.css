@@ -1,0 +1,44 @@
+.InputContainer {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 14px;
+    align-items: center;
+    height: 31px;
+    position: relative;
+}
+
+.InputContainer > label {
+    text-transform: uppercase;
+    font-size: 12px;
+    min-width: 52px;
+    margin: 0;
+}
+
+.InputContainer >  input{
+  color: #57565C;
+  border: 1px solid rgba(0, 0, 0, 0.3);
+  box-sizing: border-box;
+  height: 31px;
+  font-size: 12px;
+  padding: 6px;
+  border-radius: 3px;
+}
+
+.InputContainer >  select{
+  color: #57565C;
+  border: 1px solid rgba(0, 0, 0, 0.3);
+  box-sizing: border-box;
+  height: 31px;
+  font-size: 12px;
+  width: 147px;
+  padding: 6px;
+  border-radius: 3px;
+}
+
+.Invalid {
+  font-size: 9px;
+  color: red;
+  position: absolute;
+  right: 5px;
+  width: 50px;
+}

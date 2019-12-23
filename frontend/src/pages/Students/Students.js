@@ -2,6 +2,8 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import PageButton from '../../components/UI/PageButton/PageButton';
 import Manipulate from '../../components/Manipulate/Manipulate';
+import BackDrop from '../../components/UI/BackDrop/BackDrop';
+import Modal from '../../components/Modal/Modal';
 import AddButton from '../../components/UI/AddButton/AddButton';
 import * as actions from '../../redux/actions/index';
 import classes from './Students.css';
@@ -10,7 +12,9 @@ class Students extends Component {
     state = {
         page: 0,
         showNext: true,
-        showPrevious: false
+        showPrevious: false,
+        add: false,
+        showModal: false
     }
 
     componentDidMount() {
@@ -65,12 +69,57 @@ class Students extends Component {
 
     addStudentAccountClickedHandler = (event) => {
         this.props.history.push({
-            pathname: '/students/add-student-accounts'
+            pathname: '/students',
+            search: '?page=' + (this.state.page + 1) + '/add-student-account'
         })
+        this.setState({
+            add: true
+        })
+    }
+
+    cancelClickedHandler = () => {
+        this.setState({
+            add: false
+        })
+        this.props.history.goBack();
+    }
+
+    submitFormHandler = (event) => {
+        event.preventDefault();
         this.props.onAddStudentAccount();
+        this.setState({
+            showModal: true,
+            add: false
+        })
+    }
+
+    closeModalHandler = () => {
+        this.setState({
+            showModal: false
+        });
+        this.props.onFetchStudents(this.state.page);
+        this.props.history.goBack()
     }
 
     render() {
+        let addAcountConfirm = null;
+        if(this.state.add) {
+            addAcountConfirm = (
+                <div className={classes.formContainer}>
+                    <div className={classes.AddTitle}>Cấp tài khoản cho sinh viên</div>
+                    <form className={classes.Form} onSubmit={this.submitFormHandler}>
+                        <div className={classes.Ques}>Cấp tài khoản cho những sinh viên chưa có tài khoản ?</div>
+                        <div className={classes.Buttons}>
+                            <button className={classes.Cancel} onClick={this.cancelClickedHandler}>Hủy bỏ</button>
+                            <button className={classes.Save} type='submit'>Xác nhận</button>
+                        </div>  
+                    </form>
+                </div>
+            )
+        }
+
+        let bd = (this.state.add) ? <BackDrop clicked={this.cancelClickedHandler} show={this.state.add}/> : null
+
         const sList = this.props.students.map(student => {
             const editForm = {
                 fullname: student.fullname,
@@ -119,6 +168,9 @@ class Students extends Component {
                             <AddButton clicked={this.addStudentAccountClickedHandler} classButton='AddAccount'>Cấp tài khoản cho sinh viên</AddButton>
                         </div>
                     </div>
+                    {addAcountConfirm}
+                    {bd}
+                    <Modal show={this.state.showModal} clicked={this.closeModalHandler}>{this.props.message}</Modal>
                 </div>
     }
 }
@@ -126,7 +178,8 @@ class Students extends Component {
 const mapStateToProps = (state) => {
     return {
         students: state.students.students,
-        error: state.students.error
+        error: state.students.error,
+        message: state.students.message
     }
 }
 

@@ -3,51 +3,40 @@ import classes from './AddingInput.css';
 
 
 const input = (props) => {
-    let style = (props.touched && !props.valid) ? {borderColor: 'red'} : null;
-    let mess = (props.touched && !props.valid) ? <p className={classes.Invalid}>Thông tin không hợp lệ</p> : null;
     let opts = null;
-    let temp = [];
-    if(props.options) {
-        for(let option in props.options) {
-            temp.push({
-                id: option,
-                prop: props.options[option]
-            });
-        }
-        opts = temp.map(opt => {
-            return <option value={opt.prop.value} key={opt.id}>{opt.prop.value}</option>
+    if(props.config.options && props.config.options.length > 0) {
+        opts = props.config.options.map(opt => {
+            return <option value={opt.uuid} key={opt.uuid}>{opt.course_name}</option>
         })
     }
-
 
     let inputElement = null;
     switch(props.type) {
         case('input'):
-            inputElement = <input 
-                                {...props.config}
+            inputElement = <input type={props.config['type']}
+                                className={classes.Block}
                                 value={props.value} 
-                                onChange={props.changed}
-                                style={style}/>   
+                                onChange={props.changed}/>   
             break;
         case('select'):
             inputElement =  <select value={props.value} onChange={props.changed}>
+                                <option value=''></option>
                                 {opts}
                             </select>
             break;
         default:
-            inputElement = <input 
-                                {...props.config}
-                                value={props.value} 
-                                onChange={props.changed}/>
+            inputElement = <input type={props.config['type']}
+                                    className={classes.Block}   
+                                    value={props.value} 
+                                    onChange={props.changed}/> 
     }
     
 
     return (
-            <span className={classes.InputContainer}>
+            <div className={classes.Container}>
                 <label>{props.label}</label>
                     {inputElement}
-                    {mess}
-            </span>
+            </div>
     )
 }
 

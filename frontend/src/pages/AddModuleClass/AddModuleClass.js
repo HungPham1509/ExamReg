@@ -4,12 +4,14 @@ import Button from '../../components/UI/Button/Button';
 import UploadIcon from '../../theme/svg/cloud-computing.svg';
 import WarningIcon from '../../theme/svg/problem.svg';
 import Example from '../../theme/images/s1.png';
+import Modal from '../../components/Modal/Modal';
 import * as actions from '../../redux/actions/index';
 import classes from './AddModuleClass.css';
 
 class AddModuleClass extends Component {
     state = {
-        file: null
+        file: null,
+        showModal: false
     }
 
     inputChangeHandler = (event) => {
@@ -21,6 +23,15 @@ class AddModuleClass extends Component {
     submitHandler = (event) => {
         event.preventDefault();
         this.props.onAddModuleClass(this.state.file);
+        this.setState({
+            showModal: true
+        })
+    }
+
+    closeModalHandler = () => {
+        this.setState({
+            showModal: false
+        });
     }
 
     render() {
@@ -35,6 +46,7 @@ class AddModuleClass extends Component {
 
         return (
             <div className={classes.AddModuleClass}>
+                <Modal show={this.state.showModal} clicked={this.closeModalHandler}>{message}</Modal>
                 <form className={classes.Form} onSubmit={this.submitHandler}>
                     <div className={classes.Title}>Thêm Lớp học phần</div>
                     <div className={classes.Box}>
@@ -42,7 +54,6 @@ class AddModuleClass extends Component {
                         <Button buttonType='Upload' type='submit'>
                             <img src={UploadIcon} alt='icon' />
                         </Button>
-                        {message}
                     </div>
                     <div className={classes.Cautious}>
                         <div className={classes.Note}>

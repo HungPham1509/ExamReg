@@ -3,11 +3,11 @@ import axios from 'axios';
 import * as actions from '../actions/index';
 
 
-export function* fetchCoursesSaga() {
+export function* fetchCoursesSaga(action) {
     yield put(actions.fetchCoursesStart());
     try {
         let temp = null;
-        yield axios.get('/courses').then(response => {
+        yield axios.get('/courses?page=' + action.page).then(response => {
             temp = response.data.result
         })
         yield put(actions.fetchCoursesSuccess(temp));

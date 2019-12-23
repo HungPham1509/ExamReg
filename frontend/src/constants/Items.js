@@ -23,6 +23,19 @@ export const menuItems = {
         label: 'Quản Lý Kì Thi',
         icon: Course,
         url: '/examinations'
+    },
+    profile: {
+        label: 'Thông tin cá nhân',
+        icon: Course,
+        url: '/profile'
+    },
+    regExam: {
+        label: 'Đăng kí ca thi',
+        url: '/examinations/register'
+    },
+    viewAndPrint: {
+        label: 'Xem và in kết quả đăng kí dự thi',
+        url: '/view-and-print-register-reuslt'
     }
 }
 

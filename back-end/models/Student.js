@@ -1,5 +1,7 @@
 const Sequelize = require('sequelize');
 const connection = require('../database/connection');
+const ExaminationShift = require('./ExaminationShift');
+const StudentExaminationShift = require('./StudentExaminationShift');
 
 const Student = connection.sequelize.define(
     'student',
@@ -34,5 +36,7 @@ const Student = connection.sequelize.define(
     }
 )
 
+Student.belongsToMany(ExaminationShift, {through: StudentExaminationShift});
+ExaminationShift.belongsToMany(Student, {through: StudentExaminationShift})
 
 module.exports = Student;

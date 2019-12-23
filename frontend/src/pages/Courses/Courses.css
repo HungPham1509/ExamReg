@@ -10,6 +10,31 @@
     flex-direction: column;
     box-sizing: border-box;
     align-items: center;
-    justify-content: space-evenly;
     text-transform: capitalize;
+    margin-top: 20px;
+}
+
+.PButton {
+    margin-top: 5px;
+    border: 1px solid #1fae66;
+    border-radius: 3px;
+}
+
+.PButton button {
+    margin-left: 0;
+    color: #1fae66;
+    background-color: #fff;
+    border: none;
+    border-radius: 3px;
+    width: 80px;
+}
+
+.PButton button:focus {
+    outline: none;
+}
+
+.ButtonsRow {
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: center;
 }

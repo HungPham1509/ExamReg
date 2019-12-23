@@ -42,3 +42,30 @@
 button:focus {
     outline: none;
 }
+
+.AddShift {
+    height: 200px;
+    width: 200px;
+    background: #C6FFDD;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #f7797d, #FBD786, #C6FFDD);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #f7797d, #FBD786, #C6FFDD); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    border: 1px solid #ddd;
+    border-radius: 3px;
+}
+
+.AddShift > img {
+    width: 35px;
+    height: 35px;
+    margin-top: 5px;
+}
+
+.AddShift > p {
+    color: #001f3f;
+    font-weight: bold;
+    font-size: 16px;
+}
+
+.AddShift:hover {
+    width: 205px;
+    height: 205px;
+}

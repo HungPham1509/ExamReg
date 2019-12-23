@@ -2,47 +2,7 @@
     display: flex;
     flex-direction: column;
     flex-grow: 2;
-}
-.StudentList {
-    flex-grow: 3;
-    padding: 30px 0 0 0;
-}
-.Table {
-    width: 100%;
-    max-width: 100%;
-    background-color: transparent;
-    border-collapse: collapse;
-    border-spacing: 0;
-    font-size: 12px;
-    text-transform: capitalize;
-}
-
-td, th {
-    border: 1px solid #ddd;
-    padding: 8px;
-}
-
-
-tr:nth-child(even){background-color: #f2f2f2;}
-tr:hover {
-    background: #C9FFBF;  /* fallback for old browsers */
-    background: -webkit-linear-gradient(to right, #FFAFBD, #C9FFBF);  /* Chrome 10-25, Safari 5.1-6 */
-    background: linear-gradient(to right, #FFAFBD, #C9FFBF); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-}
-th {
-    padding-top: 12px;
-    padding-bottom: 12px;
-    background: #667db6;  /* fallback for old browsers */
-    background: -webkit-linear-gradient(to right, #667db6, #0082c8, #0082c8, #667db6);  /* Chrome 10-25, Safari 5.1-6 */
-    background: linear-gradient(to right, #667db6, #0082c8, #0082c8, #667db6); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-    text-align: left; 
-    color: white;
-    font-weight: 700;
-}
-
-td {
-    color: #303641;
-    font-weight: 500;
+    margin-top: 20px;
 }
 
 .Title {
@@ -58,37 +18,15 @@ td {
     border-bottom: none;
 }
 
-.PButton {
-    margin-top: 5px;
-    border: 1px solid #1fae66;
-    float: right;
-    border-radius: 3px;
-}
-
-.PButton button {
-    margin-left: 0;
-    color: #1fae66;
-    background-color: #fff;
-    border: none;
-    border-radius: 3px;
-    width: 80px;
-}
-
-.PButton button:focus {
-    outline: none;
-}
-
-.ButtonsRow {
-    display: flex;
-    flex-direction: row-reverse;
-    justify-content: space-between;
+.ShiftList {
+    margin-top: 20px;
 }
 
 .formContainer {
     position: absolute;
-    top: 35%;
+    top: 15%;
     right: 10%;
-    height: 20%;
+    height: 70%;
     width: 80%;
     border-radius: 3px;
     background: #B993D6;  /* fallback for old browsers */
@@ -136,17 +74,11 @@ td {
     border: 1px solid #eea236;
 }
 
-.AddTitle {
+.FormTitle {
     font-size: 12px;
     color: #fff;
     padding: 10px;
     background-color: #252b33;
     font-weight: 500;
     text-align: center;
-}
-
-.Ques {
-    font-size: 16px;
-    color: #001f3f;
-    font-weight: 700;
 }

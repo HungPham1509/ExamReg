@@ -20,9 +20,10 @@ export const fetchCoursesSuccess = (courses) => {
     }
 }
 
-export const fetchCourses = () => {
+export const fetchCourses = (page) => {
     return {
-        type: actionTypes.FETCH_COURSES
+        type: actionTypes.FETCH_COURSES,
+        page: page
     }
 }
 

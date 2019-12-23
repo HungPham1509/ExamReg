@@ -7,6 +7,28 @@ const ExaminationShiftCourse = require('../models/ExaminationShiftCourse');
 const Course = require('../models/Course');
 const Sequelize = require('sequelize');
 
+exports.getAllExaminationSemesters = (req, res, next) => {
+    ExaminationSemester.findAll({
+        attributes: ['uuid', 'year', 'semester']
+    })
+    .then(result => {
+        if(result.length <= 0) {
+            return res.status(404).json({
+                message: 'Không tìm thấy ca thi'
+            })
+        }
+        res.status(200).json({
+            result: result
+        })
+    })
+    .catch(error => {
+        res.status(500).json({
+            error: error,
+            message: 'Có lỗi xảy ra'
+        });
+    })
+}
+
 exports.createExaminationSemester = (req, res, next) => {
     ExaminationSemester.findOne({where: {year: req.body.year, semester: req.body.semester}})
     .then(result => {
@@ -127,7 +149,8 @@ exports.creatExaminationShift = (req, res, next) => {
 
                         ExaminationShiftExaminationRoom.create({
                             examinationShiftUuid: shiftUuid,
-                            examinationRoomUuid: room.uuid
+                            examinationRoomUuid: room.uuid,
+                            number_of_computers_remaining: room.number_of_computers
                         })
                         .catch(error => {
                             res.status(500).json({
@@ -159,6 +182,58 @@ exports.creatExaminationShift = (req, res, next) => {
     
 }
 
+exports.getAllExaminationShifts = (req, res, next) => {
+    const page = req.query.page;
+    ExaminationSemester.findOne({
+        where: {uuid: req.params.examination_semester_uuid},
+        attributes: ['uuid', 'year', 'semester'],
+        include: [
+            {
+                model: ExaminationShift,
+                attributes: ['uuid', 'examination_date', 'start_time', 'end_time', 'examinationSemesterUuid'],
+                limit: 8,
+                offset: 8*page,
+                include: [
+                    {
+                        model: Course,
+                        attributes: ['uuid', 'course_code', 'course_name', 'institute', 'examine_method', 'examine_time'],
+                        through: {
+                            model: ExaminationShiftCourse,
+                            attributes: [],
+                            as: 'course'
+                        },
+                    },
+                    {
+                        model: ExaminationRoom,
+                        attributes: ['uuid', 'room_name', 'place', 'number_of_computers'],
+                        through: {
+                            model: ExaminationShiftExaminationRoom,
+                            attributes: [],
+                            as: 'room'
+                        }
+                    }
+                ]
+            }
+        ]
+    })
+    .then(result => {
+        if(result.length <= 0) {
+            return res.status(404).json({
+                message: 'Không tìm thấy ca thi'
+            })
+        }
+        res.status(200).json({
+            result: result
+        })
+    })
+    .catch(error => {
+        res.status(500).json({
+            error: error,
+            message: 'Có lỗi xảy ra'
+        });
+    })
+}
+
 exports.getExaminationShift = (req, res, next) => {
     ExaminationShift.findOne({
         attributes: ['uuid', 'examination_date', 'start_time', 'end_time', 'examinationSemesterUuid'],
@@ -169,8 +244,7 @@ exports.getExaminationShift = (req, res, next) => {
                 attributes: ['uuid', 'course_code', 'course_name', 'institute', 'examine_method', 'examine_time'],
                 through: {
                     model: ExaminationShiftCourse,
-                    attributes: [],
-                    as: 'course'
+                    attributes: []
                 },
             },
             {
@@ -178,8 +252,7 @@ exports.getExaminationShift = (req, res, next) => {
                 attributes: ['uuid', 'room_name', 'place', 'number_of_computers'],
                 through: {
                     model: ExaminationShiftExaminationRoom,
-                    attributes: [],
-                    as: 'room'
+                    attributes: []
                 }
             }
         ]
@@ -204,7 +277,7 @@ exports.getExaminationShift = (req, res, next) => {
     })
 }
 
-exports.editExaminationShift = (req, res, next) => {
+/*exports.editExaminationShift = (req, res, next) => {
     ExaminationShift.findOne({
         include: [{
             model: ExaminationRoom,
@@ -267,6 +340,52 @@ exports.editExaminationShift = (req, res, next) => {
 
             res.status(200).json({
                 message: 'Thay đổi thông tin ca thi thành công'
+            })
+        }
+    })
+    .catch(error => {
+        res.status(500).json({
+            error: error,
+            message: 'Có lỗi xảy ra'
+        });
+    })
+}
+*/
+
+exports.deleteExaminationShift = (req, res, next) => {
+    ExaminationShift.destroy({
+        attributes: ['uuid', 'examination_date', 'start_time', 'end_time', 'examinationSemesterUuid'],
+        where: {uuid: req.params.examination_shift_uuid},
+        include: [
+            {
+                model: Course,
+                attributes: ['uuid', 'course_code', 'course_name', 'institute', 'examine_method', 'examine_time'],
+                through: {
+                    model: ExaminationShiftCourse,
+                    attributes: [],
+                    as: 'course'
+                },
+            },
+            {
+                model: ExaminationRoom,
+                attributes: ['uuid', 'room_name', 'place', 'number_of_computers'],
+                through: {
+                    model: ExaminationShiftExaminationRoom,
+                    attributes: [],
+                    as: 'room'
+                }
+            }
+        ]
+    })
+    .then(shift => {
+        if(!shift) {
+            return res.status(404).json({
+                message: 'Ko tìm thấy ca thi'
+            })
+        }
+        else {
+            return res.status(200).json({
+                message: 'Hủy ca thi thành công'
             })
         }
     })

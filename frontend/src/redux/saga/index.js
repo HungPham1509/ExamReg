@@ -3,7 +3,7 @@ import * as actionTypes from '../actions/actionTypes';
 import {authUserSaga, logoutSaga, authCheckStateSaga, authCheckTimeOutSaga} from './auth';
 import {fetchCoursesSaga, fetchCourseDetailsSaga, fetchModuleClassSaga, addModuleClassSaga} from './courses';
 import {fetchStudentsSaga, fetchStudentDetailsSaga, deleteStudentSaga, editStudentSaga, addStudentAccountSaga} from './students';
-
+import {fetchExaminationsSaga, fetchExaminationDetailsSaga, addShiftSaga} from './examinations';
 
 export function* watchAuth() {
     yield takeEvery(actionTypes.AUTH_USER, authUserSaga);
@@ -19,6 +19,9 @@ export function* watchAuth() {
     yield takeEvery(actionTypes.DELETE_STUDENT, deleteStudentSaga);
     yield takeEvery(actionTypes.EDIT_STUDENT, editStudentSaga);
     yield takeEvery(actionTypes.ADD_STUDENT_ACCOUNT, addStudentAccountSaga);
+    yield takeEvery(actionTypes.FETCH_EXAMINATIONS, fetchExaminationsSaga);
+    yield takeEvery(actionTypes.FETCH_EXAMINATION_DETAILS, fetchExaminationDetailsSaga);
+    yield takeEvery(actionTypes.ADD_SHIFT, addShiftSaga);
 }
 
 

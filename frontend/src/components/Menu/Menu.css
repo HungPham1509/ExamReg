@@ -1,16 +1,18 @@
 .Menu {
+    font-family: 'Carter One', cursive;
     background-color: #303641;
     height: 100%;
     min-width: 260px;
     max-width: 260px;
     color: white;
     box-sizing: border-box;
-    text-transform: uppercase;
+    text-transform: capitalize;
     -webkit-user-select: none;
     -khtml-user-select: none;
     -moz-user-select: none;
     -o-user-select: none;
     user-select: none;
+    position: relative;
 }
 
 .Menu ul {

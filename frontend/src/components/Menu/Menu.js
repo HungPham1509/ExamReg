@@ -1,7 +1,9 @@
 import React, {Component} from 'react';
 import Header from '../Menu/Header/Header';
 import Item from '../Menu/HigherOrderItems/Item/Item';
+import Footer from './Footer/Footer';
 import classes from './Menu.css';
+import {connect} from 'react-redux';
 import * as items from '../../constants/Items';
 
 
@@ -13,7 +15,8 @@ class Menu extends Component {
                 navItem: items.menuItems[item]
             });
         }
-        const navItems = navArray.map(item => {
+        let temp = (this.props.role == 0) ? navArray.slice(0, 4) : navArray.slice(4, 7)
+        const navItems = temp.map(item => {
             return (
                 <Item key={item['navItem'].label}
                       label={item['navItem'].label}
@@ -27,6 +30,7 @@ class Menu extends Component {
                         <ul>
                             {navItems}
                         </ul>
+                        <Footer />
                     </nav>
                                          
              
@@ -36,5 +40,10 @@ class Menu extends Component {
     } 
 }
 
+const mapStateToProps = state => {
+    return {
+        role: state.auth.role
+    }
+}
 
-export default Menu;
+export default connect(mapStateToProps, null)(Menu);

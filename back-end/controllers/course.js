@@ -3,12 +3,16 @@ const ModuleClass = require('../models/ModuleClass');
 
 
 exports.getAllCourse = (req, res, next) => {
+    const page = req.query.page
     Course.findAll({
         include: [
             {
                 model: ModuleClass
             }
-        ]
+        ],
+        order: [['course_name', 'ASC']],
+        limit: 4,
+        offset: 4*page
     })
     .then(courses => {
         const result = courses.map(course => {

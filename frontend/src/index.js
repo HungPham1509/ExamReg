@@ -7,6 +7,7 @@ import CreateSagaMiddleware from 'redux-saga';
 import authReducer from './redux/reducers/auth';
 import coursesReducer from './redux/reducers/courses';
 import studentReducer from './redux/reducers/students';
+import examinationReducer from './redux/reducers/examinations';
 import {watchAuth} from './redux/saga/index';
 import thunk from 'redux-thunk';
 import axios from 'axios';
@@ -25,7 +26,8 @@ const sagaMiddleware = CreateSagaMiddleware();
 const rootReducer = combineReducers({
     auth: authReducer,
     courses: coursesReducer,
-    students: studentReducer
+    students: studentReducer,
+    examinations: examinationReducer
 })
 
 const store = createStore(rootReducer, composeEnhancers(

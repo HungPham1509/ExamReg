@@ -66,14 +66,17 @@ class Manipulate extends Component {
 
     cancelClickedHandler = () => {
         this.setState({
-            edit: false,
+            edit: false
+        })
+        this.props.history.goBack();
+    }
+
+    closeModalHandler = () => {
+        this.setState({
             showModal: false
-        })
-        this.props.history.push({
-            pathname: '/students',
-            search: '?page=' + (this.props.page + 1),
-        })
+        });
         this.props.onFetchStudents(this.props.page);
+        this.props.history.goBack()
     }
     
     render() {
@@ -118,7 +121,7 @@ class Manipulate extends Component {
             <div className={classes.Manipulate}>
                 {bd}
                 {editForm}
-                <Modal show={this.state.showModal} clicked={this.cancelClickedHandler}>{this.props.message}</Modal>
+                <Modal show={this.state.showModal} clicked={this.closeModalHandler}>{this.props.message}</Modal>
                 <button className={classes.View} onClick={this.viewClickedHandler}><img src={EyeIcon} alt='icon'/></button>
                 <button className={classes.Edit} onClick={this.editClickedHandler}><img src={PencilIcon} alt='icon'/></button>
                 <button className={classes.Delete} onClick={this.deleteClickedHandler}><img width='10px' src={DeleteIcon} alt='icon'/></button>

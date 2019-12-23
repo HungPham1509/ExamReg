@@ -11,6 +11,7 @@ import CourseDetails from './pages/CourseDetails/CourseDetails';
 import ModuleClassDetails from './pages/ModuleClassDetails/ModuleClassDetails';
 import AddModuleClass from './pages/AddModuleClass/AddModuleClass';
 import StudentDetails from './pages/StudentDetails/StudentDetails';
+import ExaminationDetails from './pages/ExaminationDetails/ExaminationDetails';
 import Menu from './components/Menu/Menu';
 import User from './components/User/User';
 import classes from './App.css';
@@ -41,6 +42,7 @@ class App extends Component {
                 <Route path='/courses/module-classes/moduleClassID=:module_class_uuid' component={ModuleClassDetails}/>
                 <Route path='/courses/module-classes/add-module-class' component={AddModuleClass} />
                 <Route path='/students/studentID=:student_uuid' component={StudentDetails} />
+                <Route path='/examinations/examinationID=:examination_semester_uuid' component={ExaminationDetails} />
               </Switch>
             )
           }

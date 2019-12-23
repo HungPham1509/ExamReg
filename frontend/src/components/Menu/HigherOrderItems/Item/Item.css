@@ -2,7 +2,7 @@
     background-color: #2B303A;
     color: #AAABAE;
     width: 100%;
-    height: 100px;
+    height: 50px;
     border-bottom: 0.25px solid #AAABAE;
     padding-left: 30px;
     font-size: 12px;
@@ -10,7 +10,7 @@
     align-items: center;
 }
 
-.Item:hover, .Item:active {
+.Item:hover, .Active {
     text-decoration: none;
     color: #fff;
     background-color: #2d323d;

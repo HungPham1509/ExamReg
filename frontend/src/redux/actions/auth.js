@@ -7,12 +7,13 @@ export const authStart = () => {
     }
 }
 
-export const authSuccess = (token, userId, role) => {
+export const authSuccess = (token, userId, role, username) => {
     return {
         type: actionTypes.AUTH_SUCCESS,
         idToken: token,
         userId: userId,
-        role: role
+        role: role,
+        username: username
     }
 }
 

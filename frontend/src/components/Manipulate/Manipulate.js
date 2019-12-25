@@ -20,6 +20,7 @@ class Manipulate extends Component {
             vnu_mail: this.props.formData['vnu_mail']
         },
         edit: false,
+        delete: false,
         showModal: false
     }
 
@@ -27,11 +28,6 @@ class Manipulate extends Component {
         this.props.history.push({
             pathname: '/students/studentID=' + this.props.id
         })
-    }
-
-    deleteClickedHandler = () => {
-        this.props.onDeleteStudent(this.props.id)
-        window.location.reload();
     }
 
     editClickedHandler = () => {
@@ -55,6 +51,16 @@ class Manipulate extends Component {
         })
     }
     
+    deleteClickedHandler = () => {
+        this.setState({
+            delete: true
+        })
+        this.props.history.push({
+            pathname: '/students',
+            search: '?page=' + (this.props.page + 1) + '/studentID=' + this.props.id + '/delete',
+        })
+    }
+
     submitFormHandler = (event) => {
         event.preventDefault();
         this.props.onEditStudent(this.props.id, this.state.student);
@@ -64,9 +70,19 @@ class Manipulate extends Component {
         })
     }
 
+    confirmDeleteHandler = (event) => {
+        event.preventDefault();
+        this.props.onDeleteStudent(this.props.id)
+        this.setState({
+            showModal: true,
+            delete: false
+        })
+    }
+
     cancelClickedHandler = () => {
         this.setState({
-            edit: false
+            edit: false,
+            delete: false
         })
         this.props.history.goBack();
     }
@@ -100,7 +116,23 @@ class Manipulate extends Component {
             )
         })
 
-        let bd = (this.state.edit) ? <BackDrop clicked={this.cancelClickedHandler} show={this.state.edit}/> : null
+        let deleteConfirm = null;
+        if(this.state.delete) {
+            deleteConfirm = (
+                <div className={classes.formContainer2}>
+                    <div className={classes.AddTitle}>Xóa sinh viên</div>
+                    <form className={classes.Form} onSubmit={this.confirmDeleteHandler}>
+                        <div className={classes.Ques}>Bạn chắc chắn muốn xóa sinh viên này ?</div>
+                        <div className={classes.Buttons}>
+                            <button className={classes.Cancel} onClick={this.cancelClickedHandler}>Hủy bỏ</button>
+                            <button className={classes.Save} type='submit'>Xác nhận</button>
+                        </div>  
+                    </form>
+                </div>
+            )
+        }
+
+        let bd = (this.state.edit || this.state.delete) ? <BackDrop clicked={this.cancelClickedHandler} show={this.state.edit || this.state.delete}/> : null
         let editForm = null;
         if(this.state.edit) {
             editForm = (
@@ -121,6 +153,7 @@ class Manipulate extends Component {
             <div className={classes.Manipulate}>
                 {bd}
                 {editForm}
+                {deleteConfirm}
                 <Modal show={this.state.showModal} clicked={this.closeModalHandler}>{this.props.message}</Modal>
                 <button className={classes.View} onClick={this.viewClickedHandler}><img src={EyeIcon} alt='icon'/></button>
                 <button className={classes.Edit} onClick={this.editClickedHandler}><img src={PencilIcon} alt='icon'/></button>

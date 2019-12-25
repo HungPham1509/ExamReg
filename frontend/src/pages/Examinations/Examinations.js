@@ -11,7 +11,6 @@ class Examinations extends Component {
     }
 
     render() {
-        console.log(this.props.examinations)
         const list = this.props.examinations.map(ex => {
             return <Examination key={ex.uuid} link={ex.uuid} year={ex.year} semester={ex.semester}/>
         })

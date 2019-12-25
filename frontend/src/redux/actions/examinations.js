@@ -46,11 +46,10 @@ export const fetchExaminationDetailsFail = (error) => {
     }
 }
 
-export const fetchExaminationDetails = (examinationUuid, page) => {
+export const fetchExaminationDetails = (examinationUuid) => {
     return {
         type: actionTypes.FETCH_EXAMINATION_DETAILS,
-        examinationUuid: examinationUuid,
-        page: page
+        examinationUuid: examinationUuid
     }
 }
 
@@ -79,5 +78,32 @@ export const addShift = (examinationUuid, formData) => {
         type: actionTypes.ADD_SHIFT,
         formData: formData,
         examinationUuid: examinationUuid
+    }
+}
+
+export const deleteShiftStart = () => {
+    return {
+        type: actionTypes.DELETE_SHIFT_START
+    }
+}
+
+export const deleteShiftSuccess = (message) => {
+    return {
+        type: actionTypes.DELETE_SHIFT_SUCCESS,
+        message: message
+    }
+}
+
+export const deleteShiftFail = (error) => {
+    return {
+        type: actionTypes.DELETE_SHIFT_FAIL,
+        error: error
+    }
+}
+
+export const deleteShift = (shiftUuid) => {
+    return {
+        type: actionTypes.DELETE_SHIFT,
+        shiftUuid: shiftUuid
     }
 }

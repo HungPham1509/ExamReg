@@ -91,7 +91,12 @@ class Login extends Component {
     render() {
         let loginRedirect;
         if(this.props.isAuthenticated) {
-            loginRedirect = <Redirect to='/students' />
+            if(this.props.role == 0) {
+                loginRedirect = <Redirect to='/students' />
+            }
+            else {
+                loginRedirect = <Redirect to='/profile' />
+            }
         }
         let message = null;
         if(this.props.error) {

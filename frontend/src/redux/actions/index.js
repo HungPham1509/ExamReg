@@ -61,5 +61,9 @@ export {
         addShift,
         addShiftFail,
         addShiftStart,
-        addShiftSuccess
+        addShiftSuccess,
+        deleteShift,
+        deleteShiftFail,
+        deleteShiftStart,
+        deleteShiftSuccess
 } from './examinations'

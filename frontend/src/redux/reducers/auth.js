@@ -5,6 +5,7 @@ const initialState = {
     userId: null,
     error: null,
     role: null,
+    username: null,
     loading: false
 }
 
@@ -21,7 +22,9 @@ const reducer = (state = initialState, action) => {
                 error: null,
                 token: action.idToken,
                 userId: action.userId,
-                role: action.role
+                role: action.role,
+                username: action.username
+
             }
         case actionTypes.AUTH_FAIL: 
             return {

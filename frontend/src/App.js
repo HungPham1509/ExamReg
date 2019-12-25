@@ -12,6 +12,7 @@ import ModuleClassDetails from './pages/ModuleClassDetails/ModuleClassDetails';
 import AddModuleClass from './pages/AddModuleClass/AddModuleClass';
 import StudentDetails from './pages/StudentDetails/StudentDetails';
 import ExaminationDetails from './pages/ExaminationDetails/ExaminationDetails';
+import Profile from './pages/Profile/Profile';
 import Menu from './components/Menu/Menu';
 import User from './components/User/User';
 import classes from './App.css';
@@ -51,6 +52,7 @@ class App extends Component {
               <Switch>
                 <Route path='/login' component={Login} />
                 <Route path='/dashboard' component={Dashboard} />
+                <Route path='/profile' component={Profile} />
               </Switch>
             )
           }

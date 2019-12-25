@@ -19,7 +19,7 @@
 }
 
 .ShiftList {
-    margin-top: 20px;
+    margin-top: 10px;
 }
 
 .formContainer {
@@ -27,6 +27,23 @@
     top: 15%;
     right: 10%;
     height: 70%;
+    width: 80%;
+    border-radius: 3px;
+    background: #B993D6;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #8CA6DB, #B993D6);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #8CA6DB, #B993D6); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    font-size: 12px;
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+    z-index: 150;
+}
+
+.formContainer2 {
+    position: absolute;
+    top: 35%;
+    right: 10%;
+    height: 20%;
     width: 80%;
     border-radius: 3px;
     background: #B993D6;  /* fallback for old browsers */
@@ -81,4 +98,93 @@
     background-color: #252b33;
     font-weight: 500;
     text-align: center;
+}
+
+.AddTitle {
+    font-size: 12px;
+    color: #fff;
+    padding: 10px;
+    background-color: #252b33;
+    font-weight: 500;
+    text-align: center;
+}
+
+.Ques {
+    font-size: 16px;
+    color: #001f3f;
+    font-weight: 700;
+}
+
+.Scroll {
+    width: 100%;
+    box-sizing: border-box;
+    height: 450px;
+    overflow: auto;
+    font-size: 12px;
+    border-bottom: 1px solid #ddd;
+    border-left: 1px solid #ddd;
+    margin-top: 15px;
+}
+
+.Table {
+    width: 100%;
+    max-width: 100%;
+    background-color: transparent;
+    border-collapse: collapse;
+    border-spacing: 0;
+    font-size: 12px;
+    text-transform: capitalize;
+}
+
+td, th {
+    border: none;
+    padding: 8px;
+}
+
+tr:nth-child(even){background-color: #f2f2f2;}
+tr:hover {
+    background: #C9FFBF;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #FFAFBD, #C9FFBF);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #FFAFBD, #C9FFBF); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    background: #52c234;
+    text-align: left; 
+    color: white;
+    font-weight: 500;
+    border-right: 1px solid #fff;
+}
+
+td {
+    color: #303641;
+    font-weight: 500;
+}
+
+.Manipulate {
+    display: flex;
+    padding: 0 3px;
+    justify-content: space-between;
+}
+
+.Manipulate > button {
+    padding: 0;
+    background-color: #fff;
+    display: flex;
+    justify-content: center;
+    border-radius: 4px ;
+    width: 26px;
+    height: 24px;
+}
+.Manipulate button:focus {
+    outline: none;
+}
+
+.View {
+    border: 1px solid #1fae66;
+}
+
+.Delete {
+    border: 1px solid #f85d2c;
 }

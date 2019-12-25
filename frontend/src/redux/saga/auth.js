@@ -19,15 +19,14 @@ export function* authUserSaga(action) {
         const userId = decoded.uuid;
         const expirationDate = yield new Date().getTime() + 3600000;
         const role = decoded.role;
-
+        const username = decoded.username;
+        
         yield cookies.set('token', token, {path: '/'});
         yield cookies.set('userID', userId, {path: '/'});
         yield cookies.set('expirationDate', expirationDate, {path: '/'});
         yield cookies.set('role', role, {path: '/'});
-
         yield put(actions.checkAuthTimeOut(expirationDate));
-
-        yield put(actions.authSuccess(token, userId, role));
+        yield put(actions.authSuccess(token, userId, role, username));
     } catch (error) {
         yield put(actions.authFail(error.response.data.message));
     } 

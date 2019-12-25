@@ -2,6 +2,8 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import AddButton from '../../components/UI/AddButton/AddButton';
 import AddIcon from '../../theme/svg/add.svg';
+import EyeIcon from '../../theme/svg/eye.svg';
+import DeleteIcon from '../../theme/svg/wrong.svg';
 import AddingInput from '../../components/UI/AddingInput/AddingInputs';
 import Modal from '../../components/Modal/Modal';
 import BackDrop from '../../components/UI/BackDrop/BackDrop';
@@ -62,18 +64,15 @@ class ExaminationDetails extends Component {
         },
         page: 0,
         add: false,
+        delete: false,
+        shiftIdDeleting: null,
         showModal: false
     }
 
     componentDidMount() {
-        const path = this.props.location.pathname;
-        this.props.history.push({
-            pathname: path,
-            search: '?page=' + (this.state.page + 1)
-        })
         const id = this.props.match.params.examination_semester_uuid;
-        this.props.onFetchExaminationDetails(id, this.state.page);
-        this.props.onFetchCourses();
+        this.props.onFetchExaminationDetails(id);
+        this.props.onFetchCourses(100);
     }
 
     inputChangedHandler = (event, element) => {
@@ -105,7 +104,6 @@ class ExaminationDetails extends Component {
             showModal: true,
             add: false
         })
-        this.props.onFetchExaminationDetails(id, this.state.page);
     }
 
     addShiftHandler = () => {
@@ -120,21 +118,46 @@ class ExaminationDetails extends Component {
         const path = this.props.location.pathname;
         this.props.history.push({
             pathname: path,
-            search: '?page=' + (this.state.page + 1) + '/add-examination-shift'
+            search: '/add-examination-shift'
         })
     }
 
+    deleteClickedHandler = (shiftId) => {
+        this.setState({
+            delete: true,
+            shiftIdDeleting: shiftId
+        })
+        const path = this.props.location.pathname;
+        this.props.history.push({
+            pathname: path,
+            search: '/shiftID=' + shiftId +'/delete'
+        })
+    }
+
+
     cancelClickedHandler = () => {
         this.setState({
-            add: false
+            add: false,
+            delete: false
         })
         this.props.history.goBack()
+    }
+
+    confirmDeleteHandler = (event) => {
+        event.preventDefault();
+        this.props.onDeleteShift(this.state.shiftIdDeleting);
+        this.setState({
+            showModal: true,
+            delete: false
+        })
     }
 
     closeModalHandler = () => {
         this.setState({
             showModal: false
         });
+        const id = this.props.match.params.examination_semester_uuid;
+        this.props.onFetchExaminationDetails(id);
         this.props.history.goBack()
     }
 
@@ -163,20 +186,54 @@ class ExaminationDetails extends Component {
                         value={element.properties.value}
                         changed={(event) => this.inputChangedHandler(event, element.id)}/>
         })
-        let bd = (this.state.add) ? <BackDrop clicked={this.cancelClickedHandler} show={this.state.add}/> : null
-        let addForm = (this.state.add) ?    <div className={classes.formContainer}>
-                                                <div className={classes.FormTitle}>Tạo ca thi</div>
-                                                <form className={classes.Form} onSubmit={this.submitFormHandler}>
-                                                    {form}
-                                                    <div className={classes.Buttons}>
-                                                        <button className={classes.Cancel} type='button' onClick={this.cancelClickedHandler}>Hủy bỏ</button>
-                                                        <button className={classes.Save} type='submit'>Xác nhận</button>
-                                                    </div>  
-                                                </form>
-                                            </div> 
-                                    : null
+        let bd = (this.state.add || this.state.delete) ? <BackDrop clicked={this.cancelClickedHandler} show={this.state.add || this.state.delete}/> : null
+        let addForm = (this.state.add) ? <div className={classes.formContainer}>
+                                            <div className={classes.FormTitle}>Tạo ca thi</div>
+                                            <form className={classes.Form} onSubmit={this.submitFormHandler}>
+                                                {form}
+                                                <div className={classes.Buttons}>
+                                                    <button className={classes.Cancel} type='button' onClick={this.cancelClickedHandler}>Hủy bỏ</button>
+                                                    <button className={classes.Save} type='submit'>Xác nhận</button>
+                                                </div>  
+                                            </form>
+                                          </div> : null
 
+        let deleteConfirm = null;
+        if(this.state.delete) {
+            deleteConfirm = (
+                <div className={classes.formContainer2}>
+                    <div className={classes.AddTitle}>Hủy ca thi</div>
+                    <form className={classes.Form} onSubmit={this.confirmDeleteHandler}>
+                        <div className={classes.Ques}>Bạn chắc chắn muốn hủy ca thi này ?</div>
+                        <div className={classes.Buttons}>
+                            <button className={classes.Cancel} onClick={this.cancelClickedHandler}>Hủy bỏ</button>
+                            <button className={classes.Save} type='submit'>Xác nhận</button>
+                        </div>  
+                    </form>
+                </div>
+            )
+        }
         
+        const shiftList = this.props.examinationDetails['examination_shifts'].map(shift => {
+            return(
+                <tr key={shift.uuid}>
+                    <td>{shift['courses'][0].course_name}</td>
+                    <td style={{textAlign: 'center'}}>{shift.examination_date}</td>
+                    <td style={{textAlign: 'center'}}>{shift['examination_rooms'][0].room_name}-{shift['examination_rooms'][0].place}</td>
+                    <td style={{textAlign: 'center'}}>{shift.start_time}</td>
+                    <td style={{textAlign: 'center'}}>{shift.end_time}</td>
+                    <td style={{textAlign: 'center'}}>{shift['examination_rooms'][0].number_of_computers}</td>
+                    <td style={{textAlign: 'center'}}>{shift['examination_rooms'][0].status.number_of_computers_remaining}</td>
+                    <td>
+                        <div className={classes.Manipulate}>
+                            <button className={classes.View} onClick={this.viewClickedHandler}><img src={EyeIcon} alt='icon'/></button>
+                            <button className={classes.Delete} onClick={() => this.deleteClickedHandler(shift.uuid)}><img width='10px' src={DeleteIcon} alt='icon'/></button>
+                        </div>
+                    </td>
+                </tr>
+            )
+        })
+
         return (
             <div className={classes.Container}>
                 <div className={classes.Title}>Kì thi học kì {this.props.examinationDetails.semester} năm học {this.props.examinationDetails.year}</div>
@@ -184,10 +241,30 @@ class ExaminationDetails extends Component {
                     <AddButton classButton='AddShift' icon={AddIcon} clicked={this.addShiftHandler}>
                         <p>Tạo ca thi</p>
                     </AddButton>
+                    <div className={classes.Scroll}>
+                        <table className={classes.Table}>
+                            <thead>
+                                <tr>
+                                    <th style={{width: '220px', textAlign: 'center'}}>Môn thi</th>
+                                    <th style={{width: '120px', textAlign: 'center'}}>Ngày thi</th>
+                                    <th style={{width: '120px', textAlign: 'center'}}>Phòng thi</th>
+                                    <th style={{textAlign: 'center'}}>Thời gian bắt đầu</th>
+                                    <th style={{textAlign: 'center'}}>Thời gian kết thúc</th>
+                                    <th style={{width: '90px', textAlign: 'center'}}>máy tính</th>
+                                    <th style={{width: '120px', textAlign: 'center'}}>máy tính còn lại</th>
+                                    <th style={{width: '80px', textAlign: 'center'}}>Thao tác</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {shiftList}
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
                 <Modal show={this.state.showModal} clicked={this.closeModalHandler}>{message}</Modal>
                 {addForm}
                 {bd}
+                {deleteConfirm}
             </div>
         )       
     }
@@ -204,9 +281,10 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        onFetchExaminationDetails: (examinationUuid, page) => dispatch(actions.fetchExaminationDetails(examinationUuid, page)),
-        onFetchCourses: () => dispatch(actions.fetchCourses()),
-        onAddShift: (id, data) => dispatch(actions.addShift(id, data))
+        onFetchExaminationDetails: (examinationUuid) => dispatch(actions.fetchExaminationDetails(examinationUuid)),
+        onFetchCourses: (page) => dispatch(actions.fetchCourses(page)),
+        onAddShift: (id, data) => dispatch(actions.addShift(id, data)),
+        onDeleteShift: (id) => dispatch(actions.deleteShift(id))
     }
 }
 

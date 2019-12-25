@@ -17,7 +17,7 @@ class User extends Component {
             <div className={classes.UserContainer}>
                     <div className={classes.User}>
                         <img src={UserImage} alt={'user'}/>
-                        <p>Admin</p>
+                        <p>{this.props.username}</p>
                     </div>
                     <button className={classes.Logout} onClick={this.handleLogoutClicked}>
                             Log Out
@@ -30,7 +30,7 @@ class User extends Component {
 
 const mapStateToProps = state => {
     return {
-        isAuthenticated: state.token !== null,
+        username: state.auth.username
     }
 }
 

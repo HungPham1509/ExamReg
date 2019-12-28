@@ -13,6 +13,9 @@ import AddModuleClass from './pages/AddModuleClass/AddModuleClass';
 import StudentDetails from './pages/StudentDetails/StudentDetails';
 import ExaminationDetails from './pages/ExaminationDetails/ExaminationDetails';
 import Profile from './pages/Profile/Profile';
+import Register from './pages/Register/Register';
+import RegisterShift from './pages/RegisterShift/RegisterShift';
+import ExaminationShiftDetails from './pages/ExaminationShiftDetails/ExaminationShiftDetails';
 import Menu from './components/Menu/Menu';
 import User from './components/User/User';
 import classes from './App.css';
@@ -35,7 +38,6 @@ class App extends Component {
             subRoutes = (
               <Switch>
                 <Route path='/login' component={Login} />
-                <Route path='/dashboard' component={Dashboard} />
                 <Route exact path='/courses' component={Courses}/>                    
                 <Route exact path='/students' component={Students}/>                    
                 <Route exact path='/examinations' component={Examinations} />
@@ -43,7 +45,8 @@ class App extends Component {
                 <Route path='/courses/module-classes/moduleClassID=:module_class_uuid' component={ModuleClassDetails}/>
                 <Route path='/courses/module-classes/add-module-class' component={AddModuleClass} />
                 <Route path='/students/studentID=:student_uuid' component={StudentDetails} />
-                <Route path='/examinations/examinationID=:examination_semester_uuid' component={ExaminationDetails} />
+                <Route path='/examinations/examinationID=:examination_semester_uuid' exact component={ExaminationDetails} />
+                <Route path='/examinations/examinationID=:examination_semester_uuid/shiftID=:examination_shift_uuid' component={ExaminationShiftDetails} />
               </Switch>
             )
           }
@@ -51,8 +54,9 @@ class App extends Component {
             subRoutes = (
               <Switch>
                 <Route path='/login' component={Login} />
-                <Route path='/dashboard' component={Dashboard} />
                 <Route path='/profile' component={Profile} />
+                <Route exact path='/register' component={Register} />
+                <Route path='/register/studentID=:student_uuid/examinationID=:examination_semester_uuid' component={RegisterShift} />
               </Switch>
             )
           }

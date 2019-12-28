@@ -20,11 +20,12 @@ export function* authUserSaga(action) {
         const expirationDate = yield new Date().getTime() + 3600000;
         const role = decoded.role;
         const username = decoded.username;
-        
+
         yield cookies.set('token', token, {path: '/'});
         yield cookies.set('userID', userId, {path: '/'});
         yield cookies.set('expirationDate', expirationDate, {path: '/'});
         yield cookies.set('role', role, {path: '/'});
+        yield cookies.set('username', username, {path: '/'});
         yield put(actions.checkAuthTimeOut(expirationDate));
         yield put(actions.authSuccess(token, userId, role, username));
     } catch (error) {
@@ -49,6 +50,7 @@ export function* authCheckStateSaga (action) {
     const token = yield cookies.get('token');
     const userId = yield cookies.get('userID');
     const role = yield cookies.get('role');
+    const username = yield cookies.get('username')
     if(!token) {
         yield put(actions.authLogout());
     }
@@ -59,7 +61,7 @@ export function* authCheckStateSaga (action) {
             yield put(actions.authLogout());
         }
         else {
-            yield put(actions.authSuccess(token, userId, role));
+            yield put(actions.authSuccess(token, userId, role, username));
             yield put(actions.checkAuthTimeOut(expirationDate - presentTime));
         }
     }

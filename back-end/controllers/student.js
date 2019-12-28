@@ -34,7 +34,7 @@ exports.getStudent = (req, res, next) => {
         },
         include: [{
             model: ModuleClass,
-            attributes: ['uuid', 'module_class_code', 'number_of_credits', 'lecturer_name'],
+            attributes: ['uuid', 'module_class_code', 'number_of_credits', 'lecturer_name', 'courseUuid'],
             through: {
                 model: StudentModuleClass,
                 as: 'condition',
@@ -49,7 +49,6 @@ exports.getStudent = (req, res, next) => {
             });
         }
         else {
-            console.log(student);
             res.status(200).json({
                 result: student
             })
@@ -64,33 +63,39 @@ exports.getStudent = (req, res, next) => {
 }
 
 exports.deleteStudent = (req, res, next) => {
-    Student.destroy({
-        attributes: ['uuid', 'fullname', 'student_code', 'class_name', 'birth_date', 'class_code', 'vnu_mail'],
-        where: {
-            uuid: req.params.student_uuid
-        },
-        include: [{
-            model: ModuleClass,
-            attributes: ['uuid', 'module_class_code', 'number_of_credits', 'lecturer_name'],
-            through: {
-                model: StudentModuleClass,
-                as: 'condition',
-                attributes: ['status']
-            }
-        }]
+    Account.destroy({
+        where: {studentUuid: req.params.student_uuid}
     })
-    .then(student => {
-        if(!student) {
-            return res.status(404).json({
-                message: 'Not Found'
-            });
-        }
-        else {
-            console.log(student);
-            res.status(200).json({
-                message: 'Xóa sinh viên thành công'
-            })
-        }
+    .then(result => {
+        Student.destroy({
+            attributes: ['uuid', 'fullname', 'student_code', 'class_name', 'birth_date', 'class_code', 'vnu_mail'],
+            where: {
+                uuid: req.params.student_uuid
+            },
+            include: [
+                {
+                    model: ModuleClass,
+                    attributes: ['uuid', 'module_class_code', 'number_of_credits', 'lecturer_name'],
+                    through: {
+                        model: StudentModuleClass,
+                        as: 'condition',
+                        attributes: ['status']
+                    }
+                }
+            ]
+        })
+        .then(student => {
+            if(!student) {
+                return res.status(404).json({
+                    message: 'Not Found'
+                });
+            }
+            else {
+                res.status(200).json({
+                    message: 'Xóa sinh viên thành công'
+                })
+            }
+        })
     })
     .catch(error => {
         res.status(500).json({

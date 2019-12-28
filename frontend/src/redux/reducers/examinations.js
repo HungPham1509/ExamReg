@@ -8,6 +8,15 @@ const initialState = {
         semester: null,
         examination_shifts: []
     },
+    examinationShiftDetails: {
+        uuid: null,
+        examination_date: null,
+        start_time: null,
+        end_time: null,
+        courses: [],
+        examination_rooms: [],
+        students: []
+    },
     error: null,
     message: null
 }
@@ -78,6 +87,46 @@ const reducer = (state = initialState, action) => {
                 message: action.message
             }
         case actionTypes.DELETE_STUDENT_FAIL: 
+            return {
+                ...state,
+                error: action.error
+            }
+        case actionTypes.FETCH_EXAMINATION_SHIFT_DETAILS_START:
+            return {
+                ...state,
+                examinationShiftDetails: {
+                    uuid: null,
+                    examination_date: null,
+                    start_time: null,
+                    end_time: null,
+                    courses: [],
+                    examination_rooms: [],
+                    students: []
+                },
+                error: null
+            }
+        case actionTypes.FETCH_EXAMINATION_SHIFT_DETAILS_SUCCESS:
+            return {
+                ...state,
+                examinationShiftDetails: action.examinationShiftDetails
+            }
+        case actionTypes.FETCH_EXAMINATION_SHIFT_DETAILS_FAIL:
+            return {
+                ...state,
+                error: action.error
+            }
+        case actionTypes.ADD_EXAMINATION_START:
+            return {
+                ...state,
+                error: null,
+                message: null
+            }
+        case actionTypes.ADD_EXAMINATION_SUCCESS:
+            return {
+                ...state,
+                message: action.message
+            }
+        case actionTypes.ADD_EXAMINATION_FAIL:
             return {
                 ...state,
                 error: action.error

@@ -57,3 +57,31 @@ export function* deleteShiftSaga(action) {
         yield put(actions.deleteStudentFail(error));
     }
 }
+
+export function* fetchExaminationShiftDetailsSaga(action) {
+    yield put(actions.fetchExaminationShiftDetailsStart());
+    try {
+        let temp = null;
+        yield axios.get('/examinations/' + action.examinationUuid + '/' + action.shiftUuid)
+        .then(response => {
+            temp = response.data.result
+        })
+        yield put(actions.fetchExaminationShiftDetailsSuccess(temp))
+    } catch (error) {
+        yield put(actions.fetchExaminationShiftDetailsFail(error));
+    }
+}
+
+export function* addExSaga(action) {
+    yield put(actions.addExaminationStart());
+    try {
+        let temp;
+        yield axios.post('/examinations', action.formData)
+        .then(response => {
+            temp = response.data.message
+        })
+        yield put(actions.addExaminationSuccess(temp))
+    } catch (error) {
+        yield put(actions.addExaminationFail(error.response.data.message))
+    }
+}

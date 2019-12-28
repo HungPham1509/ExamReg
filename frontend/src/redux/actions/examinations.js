@@ -107,3 +107,58 @@ export const deleteShift = (shiftUuid) => {
         shiftUuid: shiftUuid
     }
 }
+
+export const fetchExaminationShiftDetailsStart = () => {
+    return {
+        type: actionTypes.FETCH_EXAMINATION_SHIFT_DETAILS_START
+    }
+}
+
+export const fetchExaminationShiftDetailsSuccess = (examinationShiftDetails) => {
+    return {
+        type: actionTypes.FETCH_EXAMINATION_SHIFT_DETAILS_SUCCESS,
+        examinationShiftDetails: examinationShiftDetails
+    }
+}
+
+export const fetchExaminationShiftDetailsFail = (error) => {
+    return {
+        type: actionTypes.FETCH_EXAMINATION_SHIFT_DETAILS_FAIL,
+        error: error
+    }
+}
+
+export const fetchExaminationShiftDetails = (examinationUuid, shiftUuid) => {
+    return {
+        type: actionTypes.FETCH_EXAMINATION_SHIFT_DETAILS,
+        examinationUuid: examinationUuid,
+        shiftUuid: shiftUuid
+    }
+}
+
+export const addExaminationStart = () => {
+    return {
+        type: actionTypes.ADD_EXAMINATION_START
+    }
+}
+
+export const addExaminationSuccess = (message) => {
+    return {
+        type: actionTypes.ADD_EXAMINATION_SUCCESS,
+        message: message
+    }
+}
+
+export const addExaminationFail = (error) => {
+    return {
+        type: actionTypes.ADD_EXAMINATION_FAIL,
+        error: error
+    }
+}
+
+export const addExamination = (formData) => {
+    return {
+        type: actionTypes.ADD_EXAMINATION,
+        formData: formData,
+    }
+}

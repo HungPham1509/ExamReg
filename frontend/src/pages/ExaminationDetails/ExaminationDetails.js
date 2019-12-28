@@ -134,6 +134,12 @@ class ExaminationDetails extends Component {
         })
     }
 
+    viewClickedHandler = (id) => {
+        const path = this.props.location.pathname;
+        this.props.history.push({
+            pathname: path + '/shiftID=' + id
+        })
+    }
 
     cancelClickedHandler = () => {
         this.setState({
@@ -226,7 +232,7 @@ class ExaminationDetails extends Component {
                     <td style={{textAlign: 'center'}}>{shift['examination_rooms'][0].status.number_of_computers_remaining}</td>
                     <td>
                         <div className={classes.Manipulate}>
-                            <button className={classes.View} onClick={this.viewClickedHandler}><img src={EyeIcon} alt='icon'/></button>
+                            <button className={classes.View} onClick={() => this.viewClickedHandler(shift.uuid)}><img src={EyeIcon} alt='icon'/></button>
                             <button className={classes.Delete} onClick={() => this.deleteClickedHandler(shift.uuid)}><img width='10px' src={DeleteIcon} alt='icon'/></button>
                         </div>
                     </td>
@@ -273,6 +279,7 @@ class ExaminationDetails extends Component {
 const mapStateToProps = (state) => {
     return {
         examinationDetails: state.examinations.examinationDetails,
+        examinationShiftDetails: state.examinations.examinationShiftDetails,
         error: state.examinations.error,
         courses: state.courses.courses,
         message: state.examinations.message,
@@ -284,7 +291,8 @@ const mapDispatchToProps = (dispatch) => {
         onFetchExaminationDetails: (examinationUuid) => dispatch(actions.fetchExaminationDetails(examinationUuid)),
         onFetchCourses: (page) => dispatch(actions.fetchCourses(page)),
         onAddShift: (id, data) => dispatch(actions.addShift(id, data)),
-        onDeleteShift: (id) => dispatch(actions.deleteShift(id))
+        onDeleteShift: (id) => dispatch(actions.deleteShift(id)),
+        onFetchExaminationShiftDetails: (examinationUuid, shiftId) => dispatch(actions.fetchExaminationShiftDetails(examinationUuid, shiftId))
     }
 }
 

@@ -26,25 +26,27 @@
     border-spacing: 0;
     font-size: 12px;
     text-transform: capitalize;
+    border: 1px solid #ddd;
 }
 
-td, th {
-    border: 1px solid #ddd;
+.Table td, th {
+    border: none;
     padding: 8px;
 }
 
 tr:nth-child(even){background-color: #f2f2f2;}
 tr:hover {background-color: #ddd;}
-th {
+.Table th {
     padding-top: 12px;
     padding-bottom: 12px;
     text-align: left;
     background-color: #0073b7;
     color: white;
     font-weight: 700;
+    border: 1px solid #0073b7;
 }
 
-td {
+.Table td {
     color: #303641;
     font-weight: 500;
 }
@@ -56,6 +58,6 @@ td {
     background-color: #252b33;
     font-weight: 700;
     text-align: center;
-    border: 1px solid #ddd;
     border-bottom: none;
+    border: 1px solid #252b33;
 }

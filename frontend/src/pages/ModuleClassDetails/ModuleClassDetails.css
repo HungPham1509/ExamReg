@@ -29,7 +29,7 @@
 }
 
 td, th {
-    border: 1px solid #ddd;
+    border: none;
     padding: 8px;
 }
 
@@ -56,7 +56,6 @@ td {
     background-color: #252b33;
     font-weight: 700;
     text-align: center;
-    border: 1px solid #ddd;
     border-bottom: none;
 }
 

@@ -4,11 +4,6 @@ import Course from '../theme/svg/language.svg';
 
 // Menu items
 export const menuItems = {
-    dashboard: {
-        label: 'Trang chủ',
-        icon: LineChart,
-        url: '/dashboard'
-    },
     courses: {
         label: 'Quản Lý Học Phần',
         icon: LineChart,
@@ -31,11 +26,7 @@ export const menuItems = {
     },
     regExam: {
         label: 'Đăng kí ca thi',
-        url: '/examinations/register'
-    },
-    viewAndPrint: {
-        label: 'Xem và in kết quả đăng kí dự thi',
-        url: '/view-and-print-register-reuslt'
+        url: '/register'
     }
 }
 

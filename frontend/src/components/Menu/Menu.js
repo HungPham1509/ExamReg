@@ -15,7 +15,7 @@ class Menu extends Component {
                 navItem: items.menuItems[item]
             });
         }
-        let temp = (this.props.role == 0) ? navArray.slice(0, 4) : navArray.slice(4, 7)
+        let temp = (this.props.role == 0) ? navArray.slice(0, 3) : navArray.slice(3, 5)
         const navItems = temp.map(item => {
             return (
                 <Item key={item['navItem'].label}

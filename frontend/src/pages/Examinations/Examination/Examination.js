@@ -5,7 +5,7 @@ import classes from './Examination.css';
 const examination = (props) => {
     return (
         <li>
-            <Link to={'/examinations/examinationID=' + props.link}>
+            <Link to={props.link}>
                 Kì {props.semester} Năm học {props.year}
             </Link>
         </li>

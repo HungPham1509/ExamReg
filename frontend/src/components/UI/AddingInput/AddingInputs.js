@@ -15,6 +15,8 @@ const input = (props) => {
         case('input'):
             inputElement = <input type={props.config['type']}
                                 className={classes.Block}
+                                max='2'
+                                min='1'
                                 value={props.value} 
                                 onChange={props.changed}/>   
             break;

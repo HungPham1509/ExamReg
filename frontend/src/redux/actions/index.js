@@ -65,5 +65,32 @@ export {
         deleteShift,
         deleteShiftFail,
         deleteShiftStart,
-        deleteShiftSuccess
-} from './examinations'
+        deleteShiftSuccess,
+        fetchExaminationShiftDetails,
+        fetchExaminationShiftDetailsFail,
+        fetchExaminationShiftDetailsStart,
+        fetchExaminationShiftDetailsSuccess,
+        addExamination,
+        addExaminationFail,
+        addExaminationStart,
+        addExaminationSuccess
+} from './examinations';
+
+export {
+        fetchShiftsOfStudent,
+        fetchShiftsOfStudentFail,
+        fetchShiftsOfStudentStart, 
+        fetchShiftsOfStudentSuccess,
+        registerShift,
+        registerShiftFail,
+        registerShiftStart,
+        registerShiftSuccess,
+        fetchRegisteredShifts,
+        fetchRegisteredShiftsFail,
+        fetchRegisteredShiftsStart,
+        fetchRegisteredShiftsSuccess,
+        deleteRegisteredShift,
+        deleteRegisteredShiftFail,
+        deleteRegisteredShiftStart,
+        deleteRegisteredShiftSuccess
+} from './register'

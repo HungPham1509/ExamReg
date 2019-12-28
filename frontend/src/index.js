@@ -8,6 +8,7 @@ import authReducer from './redux/reducers/auth';
 import coursesReducer from './redux/reducers/courses';
 import studentReducer from './redux/reducers/students';
 import examinationReducer from './redux/reducers/examinations';
+import registerReducer from './redux/reducers/register';
 import {watchAuth} from './redux/saga/index';
 import thunk from 'redux-thunk';
 import axios from 'axios';
@@ -27,7 +28,8 @@ const rootReducer = combineReducers({
     auth: authReducer,
     courses: coursesReducer,
     students: studentReducer,
-    examinations: examinationReducer
+    examinations: examinationReducer,
+    register: registerReducer
 })
 
 const store = createStore(rootReducer, composeEnhancers(

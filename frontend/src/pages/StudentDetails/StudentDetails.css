@@ -29,7 +29,7 @@
 }
 
 td, th {
-    border: 1px solid #ddd;
+    border: none;
     padding: 8px;
 }
 
@@ -42,6 +42,7 @@ th {
     background-color: #0073b7;
     color: white;
     font-weight: 700;
+    border-right: 1px solid #fff;
 }
 
 td {
@@ -56,6 +57,5 @@ td {
     background-color: #252b33;
     font-weight: 700;
     text-align: center;
-    border: 1px solid #ddd;
     border-bottom: none;
 }

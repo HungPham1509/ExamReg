@@ -3,7 +3,8 @@ import * as actionTypes from '../actions/actionTypes';
 import {authUserSaga, logoutSaga, authCheckStateSaga, authCheckTimeOutSaga} from './auth';
 import {fetchCoursesSaga, fetchCourseDetailsSaga, fetchModuleClassSaga, addModuleClassSaga} from './courses';
 import {fetchStudentsSaga, fetchStudentDetailsSaga, deleteStudentSaga, editStudentSaga, addStudentAccountSaga} from './students';
-import {fetchExaminationsSaga, fetchExaminationDetailsSaga, addShiftSaga, deleteShiftSaga} from './examinations';
+import {fetchExaminationsSaga, fetchExaminationDetailsSaga, addShiftSaga, deleteShiftSaga, fetchExaminationShiftDetailsSaga, addExSaga} from './examinations';
+import {fetchShiftsOfStudentSaga, registerShiftSaga, fectchRegisteredShiftsSaga, deleteRegisteredShiftSaga} from './register';
 
 export function* watchAuth() {
     yield takeEvery(actionTypes.AUTH_USER, authUserSaga);
@@ -23,6 +24,12 @@ export function* watchAuth() {
     yield takeEvery(actionTypes.FETCH_EXAMINATION_DETAILS, fetchExaminationDetailsSaga);
     yield takeEvery(actionTypes.ADD_SHIFT, addShiftSaga);
     yield takeEvery(actionTypes.DELETE_SHIFT, deleteShiftSaga);
+    yield takeEvery(actionTypes.FETCH_SHIFTS_OF_STUDENT, fetchShiftsOfStudentSaga);
+    yield takeEvery(actionTypes.REGISTER_SHIFT, registerShiftSaga);
+    yield takeEvery(actionTypes.FETCH_REGISTERED_SHIFTS, fectchRegisteredShiftsSaga);
+    yield takeEvery(actionTypes.DELETE_REGISTERED_SHIFT, deleteRegisteredShiftSaga);
+    yield takeEvery(actionTypes.FETCH_EXAMINATION_SHIFT_DETAILS, fetchExaminationShiftDetailsSaga);
+    yield takeEvery(actionTypes.ADD_EXAMINATION, addExSaga);
 }
 
 

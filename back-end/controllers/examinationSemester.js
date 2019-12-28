@@ -4,7 +4,9 @@ const ExaminationRoom = require('../models/ExaminationRoom');
 const ExaminationShift = require('../models/ExaminationShift');
 const ExaminationShiftExaminationRoom = require('../models/ExaminationShiftExaminationRoom');
 const ExaminationShiftCourse = require('../models/ExaminationShiftCourse');
+const StudentExaminationShift = require('../models/StudentExaminationShift');
 const Course = require('../models/Course');
+const Student = require('../models/Student');
 const Sequelize = require('sequelize');
 
 exports.getAllExaminationSemesters = (req, res, next) => {
@@ -115,6 +117,14 @@ exports.creatExaminationShift = (req, res, next) => {
                         {
                             start_time: {[Sequelize.Op.lte]: req.body.start_time},
                             end_time: {[Sequelize.Op.gte]: req.body.end_time}
+                        },
+                        {
+                            start_time: {[Sequelize.Op.lte]: req.body.end_time},
+                            end_time: {[Sequelize.Op.gte]: req.body.end_time}
+                        },
+                        {
+                            start_time: {[Sequelize.Op.gte]: req.body.start_time},
+                            start_time: {[Sequelize.Op.lte]: req.body.end_time}
                         }
                     ]
                 }
@@ -242,7 +252,8 @@ exports.getExaminationShift = (req, res, next) => {
                 attributes: ['uuid', 'course_code', 'course_name', 'institute', 'examine_method', 'examine_time'],
                 through: {
                     model: ExaminationShiftCourse,
-                    attributes: []
+                    attributes: [],
+                    as: 'course'
                 },
             },
             {
@@ -250,6 +261,15 @@ exports.getExaminationShift = (req, res, next) => {
                 attributes: ['uuid', 'room_name', 'place', 'number_of_computers'],
                 through: {
                     model: ExaminationShiftExaminationRoom,
+                    attributes: ['number_of_computers_remaining'],
+                    as: 'status'
+                }
+            },
+            {
+                model: Student,
+                attributes: ['uuid', 'fullname', 'student_code', 'class_name', 'birth_date', 'class_code', 'vnu_mail'],
+                through: {
+                    model: StudentExaminationShift,
                     attributes: []
                 }
             }
